@@ -19,7 +19,7 @@ const ArchiveFileList = () => {
 
     const handleListItemClick = (event: MouseEvent<HTMLAnchorElement> | MouseEvent<HTMLDivElement>, index: number) => {
         setSelectedIndex(index);
-        socomContext.archive.setSelectedFile(index);
+        socomContext.archive.setSelectedFileIndex(index);
         socomContext.triggerRefresh();
     };
 

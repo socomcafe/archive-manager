@@ -28,12 +28,16 @@ class SocomArchive {
         this._archiveFiles = [];
     }
 
-    public setSelectedFile(index: number) {
+    public setSelectedFileIndex(index: number) {
         this._selectedFile = index;
     }
 
-    public getSelectedFile(): number {
+    public getSelectedFileIndex(): number {
         return this._selectedFile;
+    }
+
+    public getSelectedFile(): FileType_1 | FileType_2 {
+        return this._archiveFiles[this._selectedFile];
     }
 
     private _parseArchive(): boolean {
@@ -101,11 +105,8 @@ class SocomArchive {
                 let archiveFileContents = new Uint8Array();
 
                 if (archiveFileVarName !== "DEP_") {
-
-                    let archiveFileContents = new Uint8Array({length: archiveFileSize});
-
-                    for (curPosition = 0; curPosition < archiveFileSize; curPosition++)
-                        archiveFileContents[curPosition] = this._data[archiveFileEntry + archiveHeader.archiveHeaderSize + curPosition];
+                    archiveFileContents = this._data.subarray(archiveFileEntry + archiveHeader.archiveHeaderSize,
+                        archiveFileEntry + archiveHeader.archiveHeaderSize + archiveFileSize)
                 }
 
                 console.log(archiveFullPath);

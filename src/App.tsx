@@ -23,11 +23,8 @@ function App() {
               <Grid item xs={4} md={4}>
                   <ArchiveFileList />
               </Grid>
-              <Grid item xs={4} md={4}>
+              <Grid item xs={8} md={8}>
                   <ArchiveFileInfo />
-              </Grid>
-              <Grid item xs={4} md={4}>
-                  <Item>xs=6 md=4</Item>
               </Grid>
           </Grid>
 
