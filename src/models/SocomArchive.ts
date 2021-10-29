@@ -16,13 +16,24 @@ class SocomArchive {
     private _data: Buffer;
     private _type: number;
     private _archiveHeader?: HeaderType_1 | HeaderType_2;
-    private _archiveFiles?: FileType_1[] | FileType_2[];
+    private _archiveFiles: FileType_1[] | FileType_2[];
+    private _selectedFile: number;
 
     constructor() {
         this._isOpened = false;
         this._fileName = "";
         this._data = BrowserBuffer.from(new Uint8Array());
         this._type = -1;
+        this._selectedFile = 0;
+        this._archiveFiles = [];
+    }
+
+    public setSelectedFile(index: number) {
+        this._selectedFile = index;
+    }
+
+    public getSelectedFile(): number {
+        return this._selectedFile;
     }
 
     private _parseArchive(): boolean {
@@ -208,7 +219,9 @@ class SocomArchive {
         this._file = undefined;
         this._fileName = "";
         this._isOpened = false;
-        this._archiveFiles = [];
+        while (this._archiveFiles && this._archiveFiles.length > 0) {
+            this._archiveFiles.pop();
+        }
     }
 
     public getFileName(): string {
@@ -222,6 +235,10 @@ class SocomArchive {
     public files() {
         return this._archiveFiles;
     }
+
+    public getArchiveType() {
+        return this._type;
+    }
 }
 
-export {SocomArchive};
+export {SocomArchive, ArchiveType};

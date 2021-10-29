@@ -19,6 +19,8 @@ const ArchiveFileList = () => {
 
     const handleListItemClick = (event: MouseEvent<HTMLAnchorElement> | MouseEvent<HTMLDivElement>, index: number) => {
         setSelectedIndex(index);
+        socomContext.archive.setSelectedFile(index);
+        socomContext.triggerRefresh();
     };
 
     function buildList(context: ArchiveContext) {
@@ -26,10 +28,7 @@ const ArchiveFileList = () => {
 
         if (files === undefined || files.length < 1)
             return (
-                <ListItemButton
-                    selected={selectedIndex === 0}
-                    onClick={(event) => handleListItemClick(event, 0)}
-                >
+                <ListItemButton>
                     <ListItemIcon>
                         <InboxIcon/>
                     </ListItemIcon>
@@ -40,8 +39,8 @@ const ArchiveFileList = () => {
         return files.map(function (object: FileType_1 | FileType_2, i) {
             return (
                 <ListItemButton
-                    selected={selectedIndex === 0}
-                    onClick={(event) => handleListItemClick(event, 0)}
+                    selected={selectedIndex === i}
+                    onClick={(event: any) => handleListItemClick(event, i)}
                 >
                     <ListItemIcon>
                         <InboxIcon/>
