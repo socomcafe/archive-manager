@@ -13,7 +13,7 @@ jobs:
       - name: Install modules
         run: npm install
       - name: Build
-        run: npm run build
+        run: CI= npm run build
       - name: Purge old files
         run: ${{ secrets.PURGE_CMD }}
       - name: Deploy
