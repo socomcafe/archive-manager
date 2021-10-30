@@ -27,9 +27,9 @@ export default (props: ArchiveButtonProps) => {
 
     return (
         <Button
+            style={{backgroundColor: "green"}}
             variant="contained"
-            component="label"
-        >
+            component="label">
             Open Archive
             <input
                 type="file"

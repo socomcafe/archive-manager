@@ -16,6 +16,7 @@ export default (props: ArchiveButtonProps) => {
 
     return (
         <Button
+            style={{backgroundColor: "red"}}
             variant="contained"
             component="label"
             onClick={() => closeFile()}>

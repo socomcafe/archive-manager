@@ -31,7 +31,7 @@ const ArchiveFileInfo = () => {
 
     function buildInfo() {
         return (
-            <Box sx={{width: '100%', bgcolor: 'background.paper'}} style={({ paddingLeft: '0.8rem' })}>
+            <Box sx={{bgcolor: 'background.paper'}} style={({ paddingLeft: '0.8rem' })}>
                 <Typography variant="h4" gutterBottom component="div">
                     {thisFile ? thisFile.name : "Nothing to show"}
                 </Typography>
