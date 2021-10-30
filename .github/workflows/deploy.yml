@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -15,6 +15,21 @@ jobs:
       - name: Build
         run: CI= npm run build
       - name: Purge old files
-        run: ${{ secrets.PURGE_CMD }}
-      - name: Deploy
-        run: ${{ secrets.DEPLOY_CMD }}
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: ${{ secrets.PURGE_CMD }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          privateKey: ${{ secrets.SSH_KEY}}
+          port: ${{ secrets.PORT }}
+      - name: ssh key with passphrase
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          port: ${{ secrets.PORT }}
+          source: "build/*"
+          target: ${{ secrets.TARGET_DIR }}
