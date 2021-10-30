@@ -1,0 +1,20 @@
+name: Deploy
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Purge old files
+        run: ${{ secrets.PURGE_CMD }}
+      - name: Deploy
+        run: ${{ secrets.DEPLOY_CMD }}

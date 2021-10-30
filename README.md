@@ -6,6 +6,8 @@ This app is a port of the original project to React,
 so it can be platform independent and ran on the web.
 This project is still under heavy development.
 
+Deployed at [SOCOM Cafe](https://dev.socom.cc/)
+
 Develop with `npm start`
 
 Build with `npm run build`
